@@ -11,6 +11,7 @@ class PushupDot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(OnbordingController());
+    controller.currentPageIndex.value = 0;
     final countController = Get.put(CounterController());
     return Scaffold(
       body: Stack(
@@ -20,18 +21,24 @@ class PushupDot extends StatelessWidget {
             onPageChanged: controller.updatePageIndicator,
             children: [
               PushupScreen(
+                todaytotal: countController.todayspush,
+                text: 'Pushups',
                 sumOfCount: countController.totalpush,
                 count: 'pushcount1',
                 maxCount: countController.push1maxPastCount,
                 todayscount: countController.pushcount1,
               ),
               PushupScreen(
+                todaytotal: countController.todayspush,
+                text: 'Pushups',
                 sumOfCount: countController.totalpush,
                 maxCount: countController.push2maxPastCount,
                 count: 'pushcount2',
                 todayscount: countController.pushcount2,
               ),
               PushupScreen(
+                todaytotal: countController.todayspush,
+                text: 'Pushups',
                 sumOfCount: countController.totalpush,
                 maxCount: countController.push3maxPastCount,
                 count: 'pushcount3',

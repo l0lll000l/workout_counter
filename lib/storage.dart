@@ -1,4 +1,3 @@
-
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -52,10 +51,38 @@ class DBHelper {
         : 0;
   }
 
+  Future<int> getTodaysPushCount() async {
+    final db = await database;
+    String today = DateTime.now().toIso8601String().split('T')[0];
+
+    var res = await db.rawQuery(
+      "SELECT (pushcount1 + pushcount2 + pushcount3) as totalPush FROM counter WHERE date = ?",
+      [today],
+    );
+
+    return res.isNotEmpty && res.first['totalPush'] != null
+        ? res.first['totalPush'] as int
+        : 0;
+  }
+
   Future<int> getTotalPullCount() async {
     final db = await database;
     var res = await db.rawQuery(
       "SELECT SUM(pullcount1 + pullcount2 + pullcount3) as totalPull FROM counter",
+    );
+
+    return res.isNotEmpty && res.first['totalPull'] != null
+        ? res.first['totalPull'] as int
+        : 0;
+  }
+
+  Future<int> getTodaysPullCount() async {
+    final db = await database;
+    String today = DateTime.now().toIso8601String().split('T')[0];
+
+    var res = await db.rawQuery(
+      "SELECT (pullcount1 + pullcount2 + pullcount3) as totalPull FROM counter WHERE date = ?",
+      [today],
     );
 
     return res.isNotEmpty && res.first['totalPull'] != null
@@ -73,16 +100,18 @@ class DBHelper {
   }) async {
     final db = await database;
     String today = DateTime.now().toIso8601String().split('T')[0];
-    await db.insert('counter', {
-      'date': today,
-      'pushcount1': pushcount1,
-      'pushcount2': pushcount2,
-      'pushcount3': pushcount3,
-      'pullcount1': pullcount1,
-      'pullcount2': pullcount2,
-      'pullcount3': pullcount3,
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
-
+    await db.insert(
+        'counter',
+        {
+          'date': today,
+          'pushcount1': pushcount1,
+          'pushcount2': pushcount2,
+          'pushcount3': pushcount3,
+          'pullcount1': pullcount1,
+          'pullcount2': pullcount2,
+          'pullcount3': pullcount3,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // Future<void> printDatabase() async {

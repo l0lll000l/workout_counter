@@ -11,17 +11,20 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class PushupScreen extends StatelessWidget {
-  PushupScreen({
-    super.key,
-    required this.count,
-    required this.todayscount,
-    required this.maxCount,
-    required this.sumOfCount,
-  });
+  PushupScreen(
+      {super.key,
+      required this.todaytotal,
+      required this.count,
+      required this.todayscount,
+      required this.maxCount,
+      required this.sumOfCount,
+      required this.text});
   final count;
   late var todayscount;
   late var maxCount;
   late var sumOfCount;
+  final String text;
+  late var todaytotal;
 
   // final random = Random();
   final counterController = Get.put(CounterController());
@@ -68,15 +71,15 @@ class PushupScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        actions: [
-          Obx(
-            () => Text(
-              'Rep ${onboardingController.currentPageIndex.value + 1}',
-              style: const TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ),
-          const SizedBox(width: 12),
-        ],
+        // actions: [
+        //   Obx(
+        //     () => Text(
+        //       'Rep ${onboardingController.currentPageIndex.value + 1}',
+        //       style: const TextStyle(color: Colors.white, fontSize: 20),
+        //     ),
+        //   ),
+        //   const SizedBox(width: 12),
+        // ],
         backgroundColor: const Color.fromRGBO(255, 255, 255, 0.15),
         title: const Text(
           'Push Your Limits',
@@ -93,23 +96,76 @@ class PushupScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                FrostedGlass(
-                  theHeight: 50,
-                  theWidth: 300,
-                  child: Obx(
-                    () => Text(
-                      'Total Pushups : ${sumOfCount.value}',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyLarge!.apply(color: Colors.white),
+            FrostedGlass(
+                theHeight: 70,
+                theWidth: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Lifetime Progress',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge!.apply(
+                              color: Colors.white,
+                              overflow: TextOverflow.ellipsis),
+                        ),
+                        Obx(
+                          () => Text(
+                            '${sumOfCount.value}',
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyLarge!.apply(
+                                color: Colors.white,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                        ),
+                      ],
                     ),
+                    const SizedBox(width: 50),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Daily Progress ',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge!.apply(
+                              color: Colors.white,
+                              overflow: TextOverflow.ellipsis),
+                        ),
+                        Obx(
+                          () => Text(
+                            '${todaytotal.value}',
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyLarge!.apply(
+                                color: Colors.white,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
+            const SizedBox(height: 30),
+            FrostedGlass(
+              theHeight: 30,
+              theWidth: 200,
+              child: Center(
+                child: Obx(
+                  () => Text(
+                    'Rep ${onboardingController.currentPageIndex.value + 1}',
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
-              ],
+              ),
             ),
-            const SizedBox(height: 70),
+            const SizedBox(height: 10),
             Obx(
               () => Text(
                 '🏆${todayscount.value}',
@@ -178,7 +234,7 @@ class PushupScreen extends StatelessWidget {
             const SizedBox(height: 20),
             FrostedGlass(
               theHeight: 40,
-              theWidth: double.infinity,
+              theWidth: 300,
               child: Obx(
                 () => Text(
                   'Record Count🔥: ${maxCount.value}',

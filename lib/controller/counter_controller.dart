@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:counter_13/fullscreen_loader.dart';
 import 'package:counter_13/storage.dart';
 import 'package:get/get.dart';
@@ -19,6 +21,8 @@ class CounterController extends GetxController {
   var pull3maxPastCount = 0.obs;
   var totalpush = 0.obs;
   var totalpull = 0.obs;
+  var todayspush = 0.obs;
+  var todayspull = 0.obs;
 
   var showAnimation = false.obs;
   final DBHelper _dbHelper = DBHelper();
@@ -29,6 +33,9 @@ class CounterController extends GetxController {
     loadData();
     totalpush.value = await _dbHelper.getTotalPushCount();
     totalpull.value = await _dbHelper.getTotalPullCount();
+    todayspush.value = await _dbHelper.getTodaysPushCount();
+    todayspull.value = await _dbHelper.getTodaysPullCount();
+    log(todayspull.toString());
   }
 
   void loadData() async {
@@ -134,8 +141,6 @@ class CounterController extends GetxController {
           }
         }
         break;
-
-      
     }
     await _dbHelper.updateCount(
       pushcount1: pushcount1.value,
@@ -152,6 +157,8 @@ class CounterController extends GetxController {
     // }
     totalpush.value = await _dbHelper.getTotalPushCount();
     totalpull.value = await _dbHelper.getTotalPullCount();
+    todayspush.value = await _dbHelper.getTodaysPushCount();
+    todayspull.value = await _dbHelper.getTodaysPullCount();
     showAnimation.value = true;
     Future.delayed(const Duration(milliseconds: 500), () {
       showAnimation.value = false;
