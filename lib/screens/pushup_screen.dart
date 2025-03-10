@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'dart:math';
 
 import 'package:counter_13/controller/counter_controller.dart';
@@ -7,6 +9,7 @@ import 'package:counter_13/rounded_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class PushupScreen extends StatelessWidget {
   PushupScreen({
     super.key,
@@ -159,10 +162,9 @@ class PushupScreen extends StatelessWidget {
                             ),
                             Positioned.fill(
                               child: Obx(
-                                () =>
-                                    counterController.showAnimation.value
-                                        ? const FlyingNumberAnimation()
-                                        : const SizedBox.shrink(),
+                                () => counterController.showAnimation.value
+                                    ? const FlyingNumberAnimation()
+                                    : const SizedBox.shrink(),
                               ),
                             ),
                           ],
@@ -173,7 +175,6 @@ class PushupScreen extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
             FrostedGlass(
               theHeight: 40,
@@ -204,7 +205,8 @@ class FlyingNumberAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
-      tween: Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0, -0.5)),
+      tween:
+          Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0, -0.5)),
       duration: const Duration(milliseconds: 800),
       builder: (context, Offset offset, child) {
         return Transform.translate(
