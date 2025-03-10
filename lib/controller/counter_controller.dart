@@ -53,8 +53,9 @@ class CounterController extends GetxController {
         pushcount1.value++;
         if (pushcount1.value > push1maxPastCount.value) {
           push1maxPastCount.value = pushcount1.value;
-          Get.snackbar("You broke the record", "Keep it up");
+
           if (push1maxPastCount.value > 20) {
+            Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
             Future.delayed(Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
@@ -67,8 +68,8 @@ class CounterController extends GetxController {
         pushcount2.value++;
         if (pushcount2.value > push2maxPastCount.value) {
           push2maxPastCount.value = pushcount2.value;
-          Get.snackbar("You broke the record", "Keep it up");
           if (push2maxPastCount.value > 20) {
+            Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
             Future.delayed(Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
