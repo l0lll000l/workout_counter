@@ -32,6 +32,7 @@ flutter_icons:
 dependency_overrides:
   web: 0.5.0
   flutter_lints: ^2.0.0
+  path: 1.8.3
 
 flutter:
   uses-material-design: true
