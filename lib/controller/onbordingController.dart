@@ -20,3 +20,4 @@ class OnbordingController extends GetxController {
     pagecontroller.jumpToPage(index);
   }
 }
+//

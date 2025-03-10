@@ -17,8 +17,8 @@ class NavigationMenu extends StatelessWidget {
         () => NavigationBar(
           indicatorColor: Colors.black.withAlpha(5),
           backgroundColor: const Color.fromRGBO(255, 255, 255, 0.05),
-          onDestinationSelected:
-              (value) => controller.selectedIndex.value = value,
+          onDestinationSelected: (value) =>
+              controller.selectedIndex.value = value,
           selectedIndex: controller.selectedIndex.value,
           elevation: 0,
           height: 60,
@@ -44,3 +44,4 @@ class NavigationController extends GetxController {
 
   final screens = [const PushupDot(), const PullupDot()];
 }
+//
