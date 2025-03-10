@@ -39,7 +39,7 @@ class PushupDot extends StatelessWidget {
               ),
             ],
           ),
-          OnBordingDotNavigation(),
+          const OnBordingDotNavigation(),
         ],
       ),
     );

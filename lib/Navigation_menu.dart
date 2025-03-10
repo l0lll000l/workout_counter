@@ -16,7 +16,7 @@ class NavigationMenu extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => NavigationBar(
           indicatorColor: Colors.black.withAlpha(5),
-          backgroundColor: Color.fromRGBO(255, 255, 255, 0.05),
+          backgroundColor: const Color.fromRGBO(255, 255, 255, 0.05),
           onDestinationSelected:
               (value) => controller.selectedIndex.value = value,
           selectedIndex: controller.selectedIndex.value,
@@ -42,5 +42,5 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final RxInt selectedIndex = 0.obs;
 
-  final screens = [PushupDot(), PullupDot()];
+  final screens = [const PushupDot(), const PullupDot()];
 }

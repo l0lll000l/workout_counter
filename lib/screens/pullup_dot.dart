@@ -39,7 +39,7 @@ class PullupDot extends StatelessWidget {
               ),
             ],
           ),
-          OnBordingDotNavigation(),
+          const OnBordingDotNavigation(),
         ],
       ),
     );

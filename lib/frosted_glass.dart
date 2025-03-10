@@ -20,7 +20,7 @@ class FrostedGlass extends StatelessWidget {
       borderRadius: BorderRadius.circular(30),
       child: GestureDetector(
         onTap: ontap,
-        child: Container(
+        child: SizedBox(
           width: theWidth,
           height: theHeight,
           child: Stack(
@@ -34,9 +34,9 @@ class FrostedGlass extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   border: Border.all(
-                    color: Color.fromRGBO(255, 255, 255, 0.15),
+                    color: const Color.fromRGBO(255, 255, 255, 0.15),
                   ),
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [
                       Color.fromRGBO(255, 255, 255, 0.15),
                       Color.fromRGBO(255, 255, 255, 0.05),

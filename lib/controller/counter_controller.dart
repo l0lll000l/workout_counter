@@ -57,7 +57,7 @@ class CounterController extends GetxController {
           if (push1maxPastCount.value > 20) {
             Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
-            Future.delayed(Duration(milliseconds: 2000), () {
+            Future.delayed(const Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
             });
           }
@@ -71,7 +71,7 @@ class CounterController extends GetxController {
           if (push2maxPastCount.value > 20) {
             Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
-            Future.delayed(Duration(milliseconds: 2000), () {
+            Future.delayed(const Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
             });
           }
@@ -86,7 +86,7 @@ class CounterController extends GetxController {
           if (push3maxPastCount.value > 20) {
             Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
-            Future.delayed(Duration(milliseconds: 2000), () {
+            Future.delayed(const Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
             });
           }
@@ -100,7 +100,7 @@ class CounterController extends GetxController {
           if (pull1maxPastCount.value > 20) {
             Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
-            Future.delayed(Duration(milliseconds: 2000), () {
+            Future.delayed(const Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
             });
           }
@@ -114,7 +114,7 @@ class CounterController extends GetxController {
           if (pull2maxPastCount.value > 20) {
             Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
-            Future.delayed(Duration(milliseconds: 2000), () {
+            Future.delayed(const Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
             });
           }
@@ -128,7 +128,7 @@ class CounterController extends GetxController {
           if (pull3maxPastCount.value > 20) {
             Get.snackbar("You broke the record", "Keep it up");
             IOIfullScreenLoader.openLoadingDialog('okey');
-            Future.delayed(Duration(milliseconds: 2000), () {
+            Future.delayed(const Duration(milliseconds: 2000), () {
               IOIfullScreenLoader.stopLoading();
             });
           }
@@ -153,7 +153,7 @@ class CounterController extends GetxController {
     totalpush.value = await _dbHelper.getTotalPushCount();
     totalpull.value = await _dbHelper.getTotalPullCount();
     showAnimation.value = true;
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       showAnimation.value = false;
     });
   }

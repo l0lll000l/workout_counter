@@ -69,12 +69,12 @@ class PushupScreen extends StatelessWidget {
           Obx(
             () => Text(
               'Rep ${onboardingController.currentPageIndex.value + 1}',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: const TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
         ],
-        backgroundColor: Color.fromRGBO(255, 255, 255, 0.15),
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.15),
         title: const Text(
           'Push Your Limits',
           style: TextStyle(color: Colors.white),
@@ -106,7 +106,7 @@ class PushupScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 70),
+            const SizedBox(height: 70),
             Obx(
               () => Text(
                 '🏆${todayscount.value}',
@@ -125,7 +125,7 @@ class PushupScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(150),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage('assets/violet.png'),
                       fit: BoxFit.cover,
                     ),
@@ -140,13 +140,13 @@ class PushupScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           pushupQuotes[Random().nextInt(pushupQuotes.length)],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Stack(
                           children: [
                             const Text(
@@ -161,8 +161,8 @@ class PushupScreen extends StatelessWidget {
                               child: Obx(
                                 () =>
                                     counterController.showAnimation.value
-                                        ? FlyingNumberAnimation()
-                                        : SizedBox.shrink(),
+                                        ? const FlyingNumberAnimation()
+                                        : const SizedBox.shrink(),
                               ),
                             ),
                           ],
@@ -190,7 +190,7 @@ class PushupScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -204,14 +204,14 @@ class FlyingNumberAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
-      tween: Tween<Offset>(begin: Offset(0, 0), end: Offset(0, -0.5)),
-      duration: Duration(milliseconds: 800),
+      tween: Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0, -0.5)),
+      duration: const Duration(milliseconds: 800),
       builder: (context, Offset offset, child) {
         return Transform.translate(
           offset: offset * MediaQuery.of(context).size.height,
           child: Opacity(
             opacity: 1 - (offset.dy.abs() * 2),
-            child: Center(
+            child: const Center(
               child: Text(
                 "1",
                 style: TextStyle(

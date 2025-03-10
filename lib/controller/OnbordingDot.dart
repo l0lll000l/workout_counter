@@ -16,7 +16,7 @@ class OnBordingDotNavigation extends StatelessWidget {
         controller: controller.pagecontroller,
         onDotClicked: controller.dotNavigationClick,
         count: 3,
-        effect: ExpandingDotsEffect(activeDotColor: Colors.white, dotHeight: 6),
+        effect: const ExpandingDotsEffect(activeDotColor: Colors.white, dotHeight: 6),
       ),
     );
   }
