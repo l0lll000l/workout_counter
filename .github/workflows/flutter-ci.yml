@@ -26,6 +26,12 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Clear Git Cache
+        run: git rm -r --cached .
+        
+      - name: Clean Flutter Project
+        run: flutter clean
+
       - name: Analyze code
         run: flutter analyze
 
