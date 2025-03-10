@@ -42,8 +42,8 @@ dependencies:
   lottie: ^3.2.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  # flutter_test:
+  #   sdk: flutter
   flutter_launcher_icons: ^0.13.1  # Check for latest version
 flutter_icons:
   android: true
@@ -52,7 +52,8 @@ flutter_icons:
   adaptive_icon_background: "#FFFFFF"  # (Optional for Android)
   adaptive_icon_foreground: "assets/logo.png"  # (Optional for Android)
 
-
+dependency_overrides:
+  web: 0.5.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
