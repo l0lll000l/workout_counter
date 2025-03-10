@@ -17,14 +17,18 @@ class CounterController extends GetxController {
   var pull1maxPastCount = 0.obs;
   var pull2maxPastCount = 0.obs;
   var pull3maxPastCount = 0.obs;
+  var totalpush = 0.obs;
+  var totalpull = 0.obs;
 
   var showAnimation = false.obs;
   final DBHelper _dbHelper = DBHelper();
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     loadData();
+    totalpush.value = await _dbHelper.getTotalPushCount();
+    totalpull.value = await _dbHelper.getTotalPullCount();
   }
 
   void loadData() async {
@@ -49,10 +53,13 @@ class CounterController extends GetxController {
         pushcount1.value++;
         if (pushcount1.value > push1maxPastCount.value) {
           push1maxPastCount.value = pushcount1.value;
-          IOIfullScreenLoader.openLoadingDialog('okey');
-          Future.delayed(Duration(milliseconds: 2000), () {
-            IOIfullScreenLoader.stopLoading();
-          });
+          Get.snackbar("You broke the record", "Keep it up");
+          if (push1maxPastCount.value > 20) {
+            IOIfullScreenLoader.openLoadingDialog('okey');
+            Future.delayed(Duration(milliseconds: 2000), () {
+              IOIfullScreenLoader.stopLoading();
+            });
+          }
         }
         break;
 
@@ -60,10 +67,13 @@ class CounterController extends GetxController {
         pushcount2.value++;
         if (pushcount2.value > push2maxPastCount.value) {
           push2maxPastCount.value = pushcount2.value;
-          IOIfullScreenLoader.openLoadingDialog('okey');
-          Future.delayed(Duration(milliseconds: 2000), () {
-            IOIfullScreenLoader.stopLoading();
-          });
+          Get.snackbar("You broke the record", "Keep it up");
+          if (push2maxPastCount.value > 20) {
+            IOIfullScreenLoader.openLoadingDialog('okey');
+            Future.delayed(Duration(milliseconds: 2000), () {
+              IOIfullScreenLoader.stopLoading();
+            });
+          }
         }
 
         break;
@@ -72,10 +82,13 @@ class CounterController extends GetxController {
         pushcount3.value++;
         if (pushcount3.value > push3maxPastCount.value) {
           push3maxPastCount.value = pushcount3.value;
-          IOIfullScreenLoader.openLoadingDialog('okey');
-          Future.delayed(Duration(milliseconds: 2000), () {
-            IOIfullScreenLoader.stopLoading();
-          });
+          if (push3maxPastCount.value > 20) {
+            Get.snackbar("You broke the record", "Keep it up");
+            IOIfullScreenLoader.openLoadingDialog('okey');
+            Future.delayed(Duration(milliseconds: 2000), () {
+              IOIfullScreenLoader.stopLoading();
+            });
+          }
         }
         break;
 
@@ -83,10 +96,13 @@ class CounterController extends GetxController {
         pullcount1.value++;
         if (pullcount1.value > pull1maxPastCount.value) {
           pull1maxPastCount.value = pullcount1.value;
-          IOIfullScreenLoader.openLoadingDialog('okey');
-          Future.delayed(Duration(milliseconds: 2000), () {
-            IOIfullScreenLoader.stopLoading();
-          });
+          if (pull1maxPastCount.value > 20) {
+            Get.snackbar("You broke the record", "Keep it up");
+            IOIfullScreenLoader.openLoadingDialog('okey');
+            Future.delayed(Duration(milliseconds: 2000), () {
+              IOIfullScreenLoader.stopLoading();
+            });
+          }
         }
         break;
 
@@ -94,10 +110,13 @@ class CounterController extends GetxController {
         pullcount2.value++;
         if (pullcount2.value > pull2maxPastCount.value) {
           pull2maxPastCount.value = pullcount2.value;
-          IOIfullScreenLoader.openLoadingDialog('okey');
-          Future.delayed(Duration(milliseconds: 2000), () {
-            IOIfullScreenLoader.stopLoading();
-          });
+          if (pull2maxPastCount.value > 20) {
+            Get.snackbar("You broke the record", "Keep it up");
+            IOIfullScreenLoader.openLoadingDialog('okey');
+            Future.delayed(Duration(milliseconds: 2000), () {
+              IOIfullScreenLoader.stopLoading();
+            });
+          }
         }
         break;
 
@@ -105,10 +124,13 @@ class CounterController extends GetxController {
         pullcount3.value++;
         if (pullcount3.value > pull3maxPastCount.value) {
           pull3maxPastCount.value = pullcount3.value;
-          IOIfullScreenLoader.openLoadingDialog('okey');
-          Future.delayed(Duration(milliseconds: 2000), () {
-            IOIfullScreenLoader.stopLoading();
-          });
+          if (pull3maxPastCount.value > 20) {
+            Get.snackbar("You broke the record", "Keep it up");
+            IOIfullScreenLoader.openLoadingDialog('okey');
+            Future.delayed(Duration(milliseconds: 2000), () {
+              IOIfullScreenLoader.stopLoading();
+            });
+          }
         }
         break;
 
@@ -128,6 +150,8 @@ class CounterController extends GetxController {
     //   push1maxPastCount.value = pushcount1.value;
     //   // showNewRecordPopup();
     // }
+    totalpush.value = await _dbHelper.getTotalPushCount();
+    totalpull.value = await _dbHelper.getTotalPullCount();
     showAnimation.value = true;
     Future.delayed(Duration(milliseconds: 500), () {
       showAnimation.value = false;

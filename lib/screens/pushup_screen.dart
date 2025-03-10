@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:counter_13/controller/counter_controller.dart';
 import 'package:counter_13/controller/onbordingController.dart';
+import 'package:counter_13/frosted_glass.dart';
 import 'package:counter_13/rounded_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,10 +13,12 @@ class PushupScreen extends StatelessWidget {
     required this.count,
     required this.todayscount,
     required this.maxCount,
+    required this.sumOfCount,
   });
   final count;
   late var todayscount;
   late var maxCount;
+  late var sumOfCount;
 
   // final random = Random();
   final counterController = Get.put(CounterController());
@@ -71,7 +74,7 @@ class PushupScreen extends StatelessWidget {
           ),
           SizedBox(width: 12),
         ],
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color.fromRGBO(255, 255, 255, 0.15),
         title: const Text(
           'Push Your Limits',
           style: TextStyle(color: Colors.white),
@@ -84,79 +87,98 @@ class PushupScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Obx(
-                () => Text(
-                  '🏆${todayscount.value}',
-                  style: const TextStyle(fontSize: 32, color: Colors.white),
-                ),
-              ),
-              GestureDetector(
-                onTap: () => counterController.increment('$count'),
-                child: IOIRoundedContainer(
-                  width: 300,
-                  height: 300,
-                  radius: 150,
-                  child: Container(
-                    height: 300,
-                    width: 300,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(150),
-                      image: DecorationImage(
-                        image: AssetImage('assets/violet.png'),
-                        fit: BoxFit.cover,
-                      ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                FrostedGlass(
+                  theHeight: 50,
+                  theWidth: 300,
+                  child: Obx(
+                    () => Text(
+                      'Total Pushups: ${sumOfCount.value}',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge!.apply(color: Colors.white),
                     ),
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            pushupQuotes[Random().nextInt(pushupQuotes.length)],
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 70),
+            Obx(
+              () => Text(
+                '🏆${todayscount.value}',
+                style: const TextStyle(fontSize: 32, color: Colors.white),
+              ),
+            ),
+            GestureDetector(
+              onTap: () => counterController.increment('$count'),
+              child: IOIRoundedContainer(
+                width: 300,
+                height: 300,
+                radius: 150,
+                child: Container(
+                  height: 300,
+                  width: 300,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(150),
+                    image: DecorationImage(
+                      image: AssetImage('assets/violet.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          softWrap: true,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          pushupQuotes[Random().nextInt(pushupQuotes.length)],
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Stack(
+                          children: [
+                            const Text(
+                              '+1',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.yellow,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 10),
-                          Stack(
-                            children: [
-                              const Text(
-                                '+1',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.yellow,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            Positioned.fill(
+                              child: Obx(
+                                () =>
+                                    counterController.showAnimation.value
+                                        ? FlyingNumberAnimation()
+                                        : SizedBox.shrink(),
                               ),
-                              Positioned.fill(
-                                child: Obx(
-                                  () =>
-                                      counterController.showAnimation.value
-                                          ? FlyingNumberAnimation()
-                                          : SizedBox.shrink(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
+            ),
 
-              const SizedBox(height: 20),
-              Obx(
+            const SizedBox(height: 20),
+            FrostedGlass(
+              theHeight: 40,
+              theWidth: double.infinity,
+              child: Obx(
                 () => Text(
                   'Record Count🔥: ${maxCount.value}',
                   style: const TextStyle(
@@ -167,8 +189,9 @@ class PushupScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 20),
+          ],
         ),
       ),
     );

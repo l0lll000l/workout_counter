@@ -20,16 +20,19 @@ class PushupDot extends StatelessWidget {
             onPageChanged: controller.updatePageIndicator,
             children: [
               PushupScreen(
+                sumOfCount: countController.totalpush,
                 count: 'pushcount1',
                 maxCount: countController.push1maxPastCount,
                 todayscount: countController.pushcount1,
               ),
               PushupScreen(
+                sumOfCount: countController.totalpush,
                 maxCount: countController.push2maxPastCount,
                 count: 'pushcount2',
                 todayscount: countController.pushcount2,
               ),
               PushupScreen(
+                sumOfCount: countController.totalpush,
                 maxCount: countController.push3maxPastCount,
                 count: 'pushcount3',
                 todayscount: countController.pushcount3,

@@ -16,19 +16,19 @@ class NavigationMenu extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => NavigationBar(
           indicatorColor: Colors.black.withAlpha(5),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color.fromRGBO(255, 255, 255, 0.05),
           onDestinationSelected:
               (value) => controller.selectedIndex.value = value,
           selectedIndex: controller.selectedIndex.value,
           elevation: 0,
-          height: 80,
+          height: 60,
           destinations: const [
             NavigationDestination(
-              icon: Image(image: AssetImage('assets/pushup.png'), width: 50),
+              icon: Image(image: AssetImage('assets/pushup.png'), width: 40),
               label: 'Pushup',
             ),
             NavigationDestination(
-              icon: Image(image: AssetImage('assets/pullup.png'), width: 50),
+              icon: Image(image: AssetImage('assets/pullup.png'), width: 40),
               label: 'Pullup',
             ),
           ],

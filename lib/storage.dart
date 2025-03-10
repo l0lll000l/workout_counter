@@ -35,13 +35,32 @@ class DBHelper {
 
   Future<int> getMaxPastCount(String count) async {
     final db = await database;
-    var res = await db.rawQuery(
-      "SELECT MAX($count) as maxCount FROM counter WHERE date != ?",
-      [DateTime.now().toIso8601String().split('T')[0]],
-    );
+    var res = await db.rawQuery("SELECT MAX($count) as maxCount FROM counter");
 
     return res.isNotEmpty && res.first['maxCount'] != null
         ? res.first['maxCount'] as int
+        : 0;
+  }
+
+  Future<int> getTotalPushCount() async {
+    final db = await database;
+    var res = await db.rawQuery(
+      "SELECT SUM(pushcount1 + pushcount2 + pushcount3) as totalPush FROM counter",
+    );
+
+    return res.isNotEmpty && res.first['totalPush'] != null
+        ? res.first['totalPush'] as int
+        : 0;
+  }
+
+  Future<int> getTotalPullCount() async {
+    final db = await database;
+    var res = await db.rawQuery(
+      "SELECT SUM(pullcount1 + pullcount2 + pullcount3) as totalPull FROM counter",
+    );
+
+    return res.isNotEmpty && res.first['totalPull'] != null
+        ? res.first['totalPull'] as int
         : 0;
   }
 
