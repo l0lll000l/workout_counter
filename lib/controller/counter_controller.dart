@@ -135,8 +135,7 @@ class CounterController extends GetxController {
         }
         break;
 
-      default:
-        print("Invalid count type");
+      
     }
     await _dbHelper.updateCount(
       pushcount1: pushcount1.value,

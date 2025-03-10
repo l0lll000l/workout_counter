@@ -84,21 +84,20 @@ class DBHelper {
       'pullcount3': pullcount3,
     }, conflictAlgorithm: ConflictAlgorithm.replace);
 
-    // await printDatabase();
   }
 
-  Future<void> printDatabase() async {
-    final db = await database;
-    List<Map<String, dynamic>> records = await db.query('counter');
+  // Future<void> printDatabase() async {
+  //   final db = await database;
+  //   List<Map<String, dynamic>> records = await db.query('counter');
 
-    if (records.isEmpty) {
-      print('Database is empty.');
-    } else {
-      for (var record in records) {
-        log(
-          'ID: ${record['id']}, Date: ${record['date']}, Count: ${record['pushcount1']} ${record['pushcount2']} ${record['pushcount3']} ${record['pullcount1']} ${record['pullcount2']} ${record['pullcount3']}',
-        );
-      }
-    }
-  }
+  //   if (records.isEmpty) {
+  //     print('Database is empty.');
+  //   } else {
+  //     for (var record in records) {
+  //       log(
+  //         'ID: ${record['id']}, Date: ${record['date']}, Count: ${record['pushcount1']} ${record['pushcount2']} ${record['pushcount3']} ${record['pullcount1']} ${record['pullcount2']} ${record['pullcount3']}',
+  //       );
+  //     }
+  //   }
+  // }
 }
