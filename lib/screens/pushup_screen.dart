@@ -100,7 +100,7 @@ class PushupScreen extends StatelessWidget {
                   theWidth: 300,
                   child: Obx(
                     () => Text(
-                      'Total Pushups: ${sumOfCount.value}',
+                      'Total Pushups : ${sumOfCount.value}',
                       style: Theme.of(
                         context,
                       ).textTheme.bodyLarge!.apply(color: Colors.white),
